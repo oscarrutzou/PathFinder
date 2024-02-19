@@ -4,14 +4,30 @@ using Microsoft.Xna.Framework.Input;
 
 namespace PathFinder
 {
-    public class Game1 : Game
+    public class GameWorld : Game
     {
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+        private static GameWorld instance;
 
-        public Game1()
+        public static GameWorld Instance
         {
-            _graphics = new GraphicsDeviceManager(this);
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new GameWorld();
+                }
+                return instance;
+            }
+        }
+        public GameTime gameTime { get; private set; }
+        public SpriteBatch spriteBatch { get; private set; }
+
+        public GraphicsDeviceManager gfxManager;
+        public GraphicsDevice gfxDevice => GraphicsDevice;
+
+        public GameWorld()
+        {
+            gfxManager = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
@@ -25,13 +41,14 @@ namespace PathFinder
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
         }
 
         protected override void Update(GameTime gameTime)
         {
+            this.gameTime = gameTime;
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
