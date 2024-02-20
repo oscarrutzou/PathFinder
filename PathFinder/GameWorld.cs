@@ -6,18 +6,35 @@ using System.Collections.Generic;
 
 namespace PathFinder
 {
-    public class Game1 : Game
+    public class GameWorld : Game
     {
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+        private static GameWorld instance;
 
         private Color _backgroundColour = Color.CornflowerBlue;
 
         private List<Component> _gameComponents;
 
         public Game1()
+        public static GameWorld Instance
         {
-            _graphics = new GraphicsDeviceManager(this);
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new GameWorld();
+                }
+                return instance;
+            }
+        }
+        public GameTime gameTime { get; private set; }
+        public SpriteBatch spriteBatch { get; private set; }
+
+        public GraphicsDeviceManager gfxManager;
+        public GraphicsDevice gfxDevice => GraphicsDevice;
+
+        public GameWorld()
+        {
+            gfxManager = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
@@ -31,7 +48,7 @@ namespace PathFinder
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteBatch = new SpriteBatch(GraphicsDevice);
 
             var randomButton = new Button(Content.Load<Texture2D>("Controls//Button"), Content.Load<SpriteFont>("Fonts/Font"))
             {
@@ -69,6 +86,7 @@ namespace PathFinder
 
         protected override void Update(GameTime gameTime)
         {
+            this.gameTime = gameTime;
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 

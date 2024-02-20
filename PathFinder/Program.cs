@@ -1,3 +1,3 @@
 ﻿
-using var game = new PathFinder.Game1();
+using var game = new PathFinder.GameWorld();
 game.Run();
