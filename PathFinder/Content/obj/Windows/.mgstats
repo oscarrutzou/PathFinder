@@ -1,0 +1,3 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/asser/source/repos/PathFinder/PathFinder/Content/Controls/Button.png","C:/Users/asser/source/repos/PathFinder/PathFinder/Content/bin/Windows/Controls/Button.xnb","TextureProcessor","Texture2DContent",735,50085,0,1710447
+"C:/Users/asser/source/repos/PathFinder/PathFinder/Content/Fonts/Font.spritefont","C:/Users/asser/source/repos/PathFinder/PathFinder/Content/bin/Windows/Fonts/Font.xnb","FontDescriptionProcessor","SpriteFontContent",2068,70687,0,1350439
