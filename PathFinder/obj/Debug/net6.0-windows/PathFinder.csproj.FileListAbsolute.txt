@@ -48,3 +48,7 @@ C:\Users\oscar\GitHub\A_Dania\Sem2\Algoritmer\PathFinder\PathFinder\bin\Debug\ne
 C:\Users\oscar\GitHub\A_Dania\Sem2\Algoritmer\PathFinder\PathFinder\bin\Debug\net6.0-windows\Content\UI\MediumBtn_2.xnb
 C:\Users\oscar\GitHub\A_Dania\Sem2\Algoritmer\PathFinder\PathFinder\bin\Debug\net6.0-windows\Content\UI\MediumBtn_3.xnb
 C:\Users\oscar\GitHub\A_Dania\Sem2\Algoritmer\PathFinder\PathFinder\bin\Debug\net6.0-windows\Content\World\Pathfinder.xnb
+C:\Users\oscar\GitHub\A_Dania\Sem2\Algoritmer\PathFinder\PathFinder\bin\Debug\net6.0-windows\Content\World\16x16White.xnb
+C:\Users\oscar\GitHub\A_Dania\Sem2\Algoritmer\PathFinder\PathFinder\bin\Debug\net6.0-windows\Content\World\chest.xnb
+C:\Users\oscar\GitHub\A_Dania\Sem2\Algoritmer\PathFinder\PathFinder\bin\Debug\net6.0-windows\Content\World\Pixel.xnb
+C:\Users\oscar\GitHub\A_Dania\Sem2\Algoritmer\PathFinder\PathFinder\bin\Debug\net6.0-windows\Content\World\key.xnb

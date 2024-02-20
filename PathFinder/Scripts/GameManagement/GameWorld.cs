@@ -32,18 +32,19 @@ namespace PathFinder
             random = new Random();
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            Window.Title = "Thread Game";
+            Window.Title = "Path Finder";
         }
 
 
         protected override void Initialize()
         {
-            ResolutionSize(1280, 720);
-            //Fullscreen();
+            //ResolutionSize(1280, 720);
+            Fullscreen();
             worldCam = new Camera(new Vector2(gfxManager.PreferredBackBufferWidth / 2, gfxManager.PreferredBackBufferHeight / 2), false);
             uiCam = new Camera(Vector2.Zero, false);
 
             GlobalTextures.LoadContent();
+            GlobalAnimations.LoadContent();
 
             GenerateScenes();
             currentScene = scenes[ScenesNames.TestScene1];
@@ -68,7 +69,7 @@ namespace PathFinder
 
         protected override void Draw(GameTime gameTime)
         {
-            gfxDevice.Clear(Color.Beige);
+            gfxDevice.Clear(new Color(76, 104, 133));
             ////Draw in world objects
             spriteBatch.Begin(sortMode: SpriteSortMode.FrontToBack, BlendState.AlphaBlend,
                 SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise,

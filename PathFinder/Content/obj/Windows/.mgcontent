@@ -15,9 +15,17 @@
     <File>C:/Users/oscar/GitHub/A_Dania/Sem2/Algoritmer/PathFinder/PathFinder/Content/UI/MediumBtn_1.png</File>
     <File>C:/Users/oscar/GitHub/A_Dania/Sem2/Algoritmer/PathFinder/PathFinder/Content/UI/MediumBtn_2.png</File>
     <File>C:/Users/oscar/GitHub/A_Dania/Sem2/Algoritmer/PathFinder/PathFinder/Content/UI/MediumBtn_3.png</File>
+    <File>C:/Users/oscar/GitHub/A_Dania/Sem2/Algoritmer/PathFinder/PathFinder/Content/World/16x16White.png</File>
+    <File>C:/Users/oscar/GitHub/A_Dania/Sem2/Algoritmer/PathFinder/PathFinder/Content/World/chest.png</File>
+    <File>C:/Users/oscar/GitHub/A_Dania/Sem2/Algoritmer/PathFinder/PathFinder/Content/World/key.png</File>
     <File>C:/Users/oscar/GitHub/A_Dania/Sem2/Algoritmer/PathFinder/PathFinder/Content/World/Pathfinder.png</File>
+    <File>C:/Users/oscar/GitHub/A_Dania/Sem2/Algoritmer/PathFinder/PathFinder/Content/World/Pixel.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

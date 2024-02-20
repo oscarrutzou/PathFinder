@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using Microsoft.Xna.Framework;
 using System.Linq;
 
 namespace PathFinder
@@ -6,7 +7,6 @@ namespace PathFinder
     public static class DebugVariables
     {
         private static Vector2 pos;
-        public static double herbivoresAlive;
 
         public static Color selectedGridColor = Color.Green;
         public static Color debugNonWalkableTilesColor = Color.DeepPink;
@@ -14,9 +14,23 @@ namespace PathFinder
         public static void DrawDebug()
         {
             pos = new Vector2(10, 10);
-
+            GameWorld gameWorld = GameWorld.Instance;
             //DrawString($"GameSpeed: {GameWorld.Instance.gameSpeed}");
-            
+
+            if (gameWorld.currentScene is TestScene1 scene)
+            {
+                DrawString($"Mouse over grid pos: {scene.grid.GetTile(InputManager.mousePositionInWorld)?.gridPosition}");
+                DrawString("");
+                if (InputManager.start != null)
+                {
+                    DrawString($"Start pos: {InputManager.start.gridPosition}");
+
+                }
+                if (InputManager.goal != null)
+                {
+                    DrawString($"Goal pos: {InputManager.goal.gridPosition}");
+                }
+            }
         }
 
         private static void DrawString(string text)

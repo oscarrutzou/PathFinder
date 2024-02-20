@@ -22,7 +22,7 @@ namespace PathFinder
 
         public static bool buildMode;
         public static bool mouseOutOfBounds;
-        public static bool debugStats = true;
+        public static bool debugStats;
 
         private static int gameSpeedIndex = 1;
 
@@ -34,6 +34,8 @@ namespace PathFinder
             { 5f},
             { 10f},
         };
+
+        public static Cell start, goal;
         #endregion
 
         /// <summary>
@@ -66,7 +68,13 @@ namespace PathFinder
             if (keyboardState.IsKeyDown(Keys.Q) && !previousKeyboardState.IsKeyDown(Keys.Q))
             {
                 debugStats = !debugStats;
+                if (GameWorld.Instance.currentScene is TestScene1 scene)
+                {
+                    scene.grid.ShowHideGrid();
+                }
             }
+
+
 
             //MoveCam();
             //ChangeGameSpeed();
@@ -98,8 +106,35 @@ namespace PathFinder
             mouseClicked = (Mouse.GetState().LeftButton == ButtonState.Pressed) && (previousMouseState.LeftButton == ButtonState.Released);
             mouseRightClicked = (Mouse.GetState().RightButton == ButtonState.Pressed) && (previousMouseState.RightButton == ButtonState.Released);
 
-            if (mouseClicked) { CheckButtons(); }
+            if (mouseClicked)
+            {
+                CheckButtons();
+                
+ 
+            }
+
+            if (mouseClicked || mouseRightClicked)
+            {
+                if (GameWorld.Instance.currentScene is TestScene1 scene)
+                {
+                    Cell cell = scene.grid.GetTile(GetMousePositionInWorld());
+                    if (cell == null || !cell.isValid) return;
+                    if (cell == start || cell == goal) return; //Shouldnt be able to pick the start or goal for a search.
+                    
+
+                    if (mouseClicked)
+                    {
+                        start = cell;    
+                    }else if (mouseRightClicked)
+                    {
+                        goal = cell;
+                    }
+                }
+            }
+            
         }
+
+
         private static void CheckButtons()
         {
             if (SceneData.guis.Count == 0) return;

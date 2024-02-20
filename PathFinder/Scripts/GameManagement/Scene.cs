@@ -78,6 +78,12 @@ namespace PathFinder
         {
             switch (gameObject)
             {
+                case Cell cell:
+                    SceneData.cells.Add(cell);
+                    break;
+                case Decoration decoration:
+                    SceneData.decorations.Add(decoration);
+                    break;
                 case Gui gui:
                     SceneData.guis.Add(gui);
                     break;
@@ -91,6 +97,12 @@ namespace PathFinder
         {
             switch (gameObject)
             {
+                case Cell cell:
+                    SceneData.cells.Remove(cell);
+                    break;
+                case Decoration decoration:
+                    SceneData.decorations.Remove(decoration);
+                    break;
                 case Gui gui:
                     SceneData.guis.Remove(gui);
                     break;

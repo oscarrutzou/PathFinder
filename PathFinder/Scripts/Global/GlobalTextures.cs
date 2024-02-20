@@ -13,6 +13,9 @@ namespace PathFinder
     {
         TestDolphin,
         StaticButton,
+        Tile16x16,
+        Map,
+        Key,
     }
 
     // Dictionary of all textures
@@ -29,6 +32,9 @@ namespace PathFinder
             {
                 {TextureNames.TestDolphin, content.Load<Texture2D>("Persons\\tile_dolphin") },
                 {TextureNames.StaticButton, content.Load<Texture2D>("UI\\MediumBtn_0") },
+                {TextureNames.Tile16x16, content.Load<Texture2D>("World\\16x16White") },
+                {TextureNames.Map, content.Load<Texture2D>("World\\Pathfinder") },
+                {TextureNames.Key, content.Load<Texture2D>("World\\key") },
 
             };
 

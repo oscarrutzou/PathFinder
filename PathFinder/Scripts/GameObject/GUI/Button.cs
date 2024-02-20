@@ -26,7 +26,7 @@ namespace PathFinder
         public Button(Vector2 pos, AnimNames animNames, string text, Action onClick)
         {
             this.position = pos;
-            animation = GlobalAnimations.animationsTest[animNames];
+            animation = GlobalAnimations.animations[animNames];
             this.text = text;
             this.onClick = onClick;
             isCentered = true;

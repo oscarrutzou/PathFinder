@@ -7,25 +7,37 @@ namespace PathFinder
     public enum AnimNames
     {
         TestAnim,
-        FighterSlash,
-        FighterDead,
+        WizardUp,
+        WizardDown,
+        WizardLeft,
+        WizardRight,
+        Snake,
+        ChestOpen,
+
+        ButtonPress,
     }
 
     public static class GlobalAnimations
     {
         // Dictionary of all animations
-        private static Dictionary<AnimNames, List<Texture2D>> animations = new Dictionary<AnimNames, List<Texture2D>>();
-        public static Dictionary<AnimNames, Animation> animationsTest { get; private set; }
+        public static Dictionary<AnimNames, Animation> animations { get; private set; }
 
         public static void LoadContent()
         {
-            animationsTest = new Dictionary<AnimNames, Animation>();
+            animations = new Dictionary<AnimNames, Animation>();
             //Can upload sprite sheets, left to right
             //LoadSpriteSheet(AnimNames.FighterSlash, "Persons\\Worker\\FighterSlash", 32);
+            LoadSpriteSheet(AnimNames.ChestOpen, "World\\chest", 16);
+            LoadSpriteSheet(AnimNames.WizardUp, "Persons\\wizardUp", 32);
+            LoadSpriteSheet(AnimNames.WizardDown, "Persons\\wizardDown", 32);
+            LoadSpriteSheet(AnimNames.WizardLeft, "Persons\\wizardLeft", 32);
+            LoadSpriteSheet(AnimNames.WizardRight, "Persons\\wizardRight", 32);
+            LoadSpriteSheet(AnimNames.Snake, "Persons\\snake", 16);
 
             //How to use. Each animation should be called _0, then _1 and so on, on each texuture.
             //Remember the path should show everything and just delete the number. But keep the "_".
             //LoadIndividualFramesAnimationT(AnimNames.FighterDead, "Persons\\Worker\\FigtherTestDead_", 2);
+            LoadIndividualFramesAnimationT(AnimNames.ButtonPress, "UI\\MediumBtn_", 4);
         }
 
         private static void LoadSpriteSheet(AnimNames animName, string path, int dem)
@@ -35,7 +47,7 @@ namespace PathFinder
                 dem,
                 animName);
 
-            animationsTest.Add(animName, spriteSheet);
+            animations.Add(animName, spriteSheet);
         }
 
         private static void LoadIndividualFramesAnimationT(AnimNames animationName, string path, int framesInAnim)
@@ -48,30 +60,7 @@ namespace PathFinder
             }
 
             AnimationIndividualFrames anim = new AnimationIndividualFrames(animList, animationName);
-            animationsTest.Add(animationName, anim);
+            animations.Add(animationName, anim);
         }
-
-        //public static AnimationSpriteSheet SetAnimation(AnimNames name)
-        //{
-        //    return new AnimationSpriteSheet()
-        //}
-
-        private static void LoadIndividualFramesAnimation(AnimNames animationName, string path, int framesInAnim)
-        {
-            // Load all frames in the animation
-            List<Texture2D> animList = new List<Texture2D>();
-            for (int i = 0; i < framesInAnim; i++)
-            {
-                animList.Add(GameWorld.Instance.Content.Load<Texture2D>(path + i));
-            }
-            animations[animationName] = animList;
-        }
-
-        //Should be used when the object want to set its animation, then it makes a new animation. Maybe another way
-        //public static AnimationIndividualFrames SetAnimation(AnimNames name)
-        //{
-        //    return new AnimationIndividualFrames(animations[name], name);
-        //}
-
     }
 }

@@ -13,6 +13,8 @@ namespace PathFinder
         public static List<GameObject> gameObjectsToAdd = new List<GameObject>();
 
 
+        public static List<Cell> cells = new List<Cell>();
+        public static List<Decoration> decorations = new List<Decoration>();
         public static List<Gui> guis = new List<Gui>();
         public static List<GameObject> defaults = new List<GameObject>();
     }
