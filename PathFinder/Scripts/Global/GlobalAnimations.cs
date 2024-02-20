@@ -7,11 +7,8 @@ namespace PathFinder
     public enum AnimNames
     {
         TestAnim,
-        PlayerUp,
-        PlayerDown,
-        PlayerLeft,
-        PlayerRight,
-        SnakeIdle,
+        FighterSlash,
+        FighterDead,
     }
 
     public static class GlobalAnimations
@@ -25,11 +22,6 @@ namespace PathFinder
             animationsTest = new Dictionary<AnimNames, Animation>();
             //Can upload sprite sheets, left to right
             //LoadSpriteSheet(AnimNames.FighterSlash, "Persons\\Worker\\FighterSlash", 32);
-            LoadSpriteSheet(AnimNames.PlayerUp, "Animations\\wizardUp", 32);
-            LoadSpriteSheet(AnimNames.PlayerDown, "Animations\\wizardDown", 32);
-            LoadSpriteSheet(AnimNames.PlayerLeft, "Animations\\wizardLeft", 32);
-            LoadSpriteSheet(AnimNames.PlayerRight, "Animations\\wizardRight", 32);
-            LoadSpriteSheet(AnimNames.SnakeIdle, "Animations\\snake", 16);
 
             //How to use. Each animation should be called _0, then _1 and so on, on each texuture.
             //Remember the path should show everything and just delete the number. But keep the "_".

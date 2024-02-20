@@ -4,10 +4,30 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/asser/source/repos/PathFinder/PathFinder/Content/Controls/Button.png</File>
-    <File>C:/Users/asser/source/repos/PathFinder/PathFinder/Content/Fonts/Font.spritefont</File>
+    <File>C:/Users/oscar/GitHub/A_Dania/Sem2/Algoritmer/PathFinder/PathFinder/Content/Fonts/Ariel.spritefont</File>
+    <File>C:/Users/oscar/GitHub/A_Dania/Sem2/Algoritmer/PathFinder/PathFinder/Content/Persons/snake.png</File>
+    <File>C:/Users/oscar/GitHub/A_Dania/Sem2/Algoritmer/PathFinder/PathFinder/Content/Persons/tile_dolphin.png</File>
+    <File>C:/Users/oscar/GitHub/A_Dania/Sem2/Algoritmer/PathFinder/PathFinder/Content/Persons/wizardDown.png</File>
+    <File>C:/Users/oscar/GitHub/A_Dania/Sem2/Algoritmer/PathFinder/PathFinder/Content/Persons/wizardLeft.png</File>
+    <File>C:/Users/oscar/GitHub/A_Dania/Sem2/Algoritmer/PathFinder/PathFinder/Content/Persons/wizardRight.png</File>
+    <File>C:/Users/oscar/GitHub/A_Dania/Sem2/Algoritmer/PathFinder/PathFinder/Content/Persons/wizardUp.png</File>
+    <File>C:/Users/oscar/GitHub/A_Dania/Sem2/Algoritmer/PathFinder/PathFinder/Content/UI/MediumBtn_0.png</File>
+    <File>C:/Users/oscar/GitHub/A_Dania/Sem2/Algoritmer/PathFinder/PathFinder/Content/UI/MediumBtn_1.png</File>
+    <File>C:/Users/oscar/GitHub/A_Dania/Sem2/Algoritmer/PathFinder/PathFinder/Content/UI/MediumBtn_2.png</File>
+    <File>C:/Users/oscar/GitHub/A_Dania/Sem2/Algoritmer/PathFinder/PathFinder/Content/UI/MediumBtn_3.png</File>
+    <File>C:/Users/oscar/GitHub/A_Dania/Sem2/Algoritmer/PathFinder/PathFinder/Content/World/Pathfinder.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>

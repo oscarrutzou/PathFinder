@@ -7524,23 +7524,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\asser\\.nuget\\packages\\": {},
+    "C:\\Users\\oscar\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\asser\\source\\repos\\PathFinder\\PathFinder\\PathFinder.csproj",
+      "projectUniqueName": "C:\\Users\\oscar\\GitHub\\A_Dania\\Sem2\\Algoritmer\\PathFinder\\PathFinder\\PathFinder.csproj",
       "projectName": "PathFinder",
-      "projectPath": "C:\\Users\\asser\\source\\repos\\PathFinder\\PathFinder\\PathFinder.csproj",
-      "packagesPath": "C:\\Users\\asser\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\asser\\source\\repos\\PathFinder\\PathFinder\\obj\\",
+      "projectPath": "C:\\Users\\oscar\\GitHub\\A_Dania\\Sem2\\Algoritmer\\PathFinder\\PathFinder\\PathFinder.csproj",
+      "packagesPath": "C:\\Users\\oscar\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\oscar\\GitHub\\A_Dania\\Sem2\\Algoritmer\\PathFinder\\PathFinder\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\asser\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\oscar\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -7562,11 +7562,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -7601,7 +7596,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
