@@ -15,10 +15,10 @@ namespace PathFinder
         public Grid grid;
         private Decoration chest;
         private Decoration snake;
-        private Decoration key1, key2;
         //btn = new Button(GameWorld.Instance.uiCam.Center, TextureNames.StaticButton, "Hallo\nthis is a test", () => { btn.isRemoved = true; });
         //btn.SetCollisionBox(30, 20);
         //SceneData.gameObjectsToAdd.Add(btn);
+        private Decoration key1, key2;
         public override void Initialize()
         {
             grid = new Grid();
