@@ -37,6 +37,7 @@ namespace PathFinder
 
         public static Cell start, goal;
         public static Astar astar = new Astar();
+        public static DFS dfs = new DFS();
         public static List<Cell> path = new List<Cell>();
         #endregion
 
@@ -83,6 +84,7 @@ namespace PathFinder
                     if (GameWorld.Instance.currentScene is TestScene1 scene)
                     {
                         path = astar.FindPath(start.gridPosition, goal.gridPosition);
+                        //path = dfs.FindPath(start.gridPosition, goal.gridPosition);
                     }
                 }
             }
@@ -128,7 +130,7 @@ namespace PathFinder
             {
                 if (GameWorld.Instance.currentScene is TestScene1 scene)
                 {
-                    Cell cell = scene.grid.GetTile(GetMousePositionInWorld());
+                    Cell cell = scene.grid.GetCell(GetMousePositionInWorld());
                     if (cell == null || !cell.isValid) return;
                     if (cell == start || cell == goal) return; //Shouldnt be able to pick the start or goal for a search.
                     

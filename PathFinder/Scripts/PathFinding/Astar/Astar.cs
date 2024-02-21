@@ -5,33 +5,35 @@ using System.Linq;
 
 namespace PathFinder
 {
-    public class Astar
+/*
+    1. Placer start noden på den åbne liste
+    2. Gentag følgende
+        a) Find noden med den laveste F værdi på den åbne liste (den valgte node)
+        b) Flyt noden til den lukkede liste
+        c) Gør følgende for alle nabonoder til den valgte node
+            • Hvis noden ikke er walkable eller er på den lukkede liste, ignoreres den
+            • Hvis den ikke er på den åbne liste tilføjes den til listen. Den valgte node gøres til parent og F,G og H værdierne beregnes
+            • Hvis noden allerede er på listen kontrolleres det om stien gennem den nuværende node er bedre, ved at sammenligne G
+            værdierne. Hvis G er lavere er stien bedre. Hvis dette er tilfældet ændres nodens parent til den nuværende node, G,H og F
+            scores genberegnes
+        d) Søgningen stoppes når
+            • Målet er tilføjet til den lukkede liste dvs. at en sti blev fundet
+            • Den åbne liste er tom dvs. at der ikke blev fundet en sti
+    3. Stien findes ved at arbejde sig tilbage fra målet gennem parent noder til startknuden er nået
+    */
+    public class Astar: IPathFinding
     {
-        /*
-            1. Placer start noden på den åbne liste
-            2. Gentag følgende
-                a) Find noden med den laveste F værdi på den åbne liste (den valgte node)
-                b) Flyt noden til den lukkede liste
-                c) Gør følgende for alle nabonoder til den valgte node
-                    • Hvis noden ikke er walkable eller er på den lukkede liste, ignoreres den
-                    • Hvis den ikke er på den åbne liste tilføjes den til listen. Den valgte node gøres til parent og F,G og H værdierne beregnes
-                    • Hvis noden allerede er på listen kontrolleres det om stien gennem den nuværende node er bedre, ved at sammenligne G
-                    værdierne. Hvis G er lavere er stien bedre. Hvis dette er tilfældet ændres nodens parent til den nuværende node, G,H og F
-                    scores genberegnes
-                d) Søgningen stoppes når
-                    • Målet er tilføjet til den lukkede liste dvs. at en sti blev fundet
-                    • Den åbne liste er tom dvs. at der ikke blev fundet en sti
-            3. Stien findes ved at arbejde sig tilbage fra målet gennem parent noder til startknuden er nået
-         */
-        private Dictionary<Point, Cell> grid;
+        private Dictionary<Point, Cell> cells;
+        private Grid grid;
         private int gridDem;
         private HashSet<Cell> open;
         private HashSet<Cell> closed;
         private Color pathColor = Color.Red;
         private Color searchedColor = Color.Pink;
 
-        public void LoadAstar(Dictionary<Point, Cell> grid)
+        public void Initialize(Grid grid)
         {
+            this.cells = grid.Cells; // Assign existing grid
             this.grid = grid;
             gridDem = Cell.demension;
         }
@@ -43,12 +45,12 @@ namespace PathFinder
 
             open = new HashSet<Cell>();
             closed = new HashSet<Cell>();
-            if (!grid.ContainsKey(start) || !grid.ContainsKey(goal))
+            if (!cells.ContainsKey(start) || !cells.ContainsKey(goal))
             {
                 return null;
             }
 
-            open.Add(grid[start]);
+            open.Add(cells[start]);
 
             while (open.Count > 0)
             {
@@ -67,7 +69,7 @@ namespace PathFinder
                 if (curCell.gridPosition.X == goal.X && curCell.gridPosition.Y == goal.Y)
                 {
                     //path found!
-                    return RetracePath(grid[start], grid[goal]);
+                    return RetracePath(cells[start], cells[goal]);
                 }
 
 
@@ -126,7 +128,7 @@ namespace PathFinder
 
         public void ResetColors()
         {
-            foreach (Cell cell in grid.Values)
+            foreach (Cell cell in cells.Values)
             {
                 cell.color = cell.baseColor;
             }
@@ -166,9 +168,9 @@ namespace PathFinder
                 Point newPoint = new Point(nx, ny);
 
                 //If the direction isn't in the grid or the point doesn't exist in the grid
-                if (!(nx >= 0 && nx < gridDem && ny >= 0 && ny < gridDem) || !grid.ContainsKey(newPoint)) continue;
+                if (!(nx >= 0 && nx < gridDem && ny >= 0 && ny < gridDem) || !cells.ContainsKey(newPoint)) continue;
 
-                if (!grid[newPoint].isValid) continue;
+                if (!cells[newPoint].isValid) continue;
 
                 //Check if the cell is diagonally adjacent
                 if (Math.Abs(point.X - nx) == 1 && Math.Abs(point.Y - ny) == 1)
@@ -177,13 +179,13 @@ namespace PathFinder
                     Point sidePoint1 = new Point(point.X, ny);
                     Point sidePoint2 = new Point(nx, point.Y);
 
-                    if (!grid.ContainsKey(sidePoint1) || !grid.ContainsKey(sidePoint2)) continue;
+                    if (!cells.ContainsKey(sidePoint1) || !cells.ContainsKey(sidePoint2)) continue;
 
-                    if (!grid[sidePoint1].isValid || !grid[sidePoint2].isValid) continue;
+                    if (!cells[sidePoint1].isValid || !cells[sidePoint2].isValid) continue;
                 }
 
-                temp.Add(grid[newPoint]);
-                grid[newPoint].color = searchedColor;
+                temp.Add(cells[newPoint]);
+                cells[newPoint].color = searchedColor;
             }
             return temp;
         }

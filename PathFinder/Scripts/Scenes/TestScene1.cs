@@ -66,7 +66,8 @@ namespace PathFinder
             if (!initAfterObjectsAdded)
             {
                 initAfterObjectsAdded = true;
-                InputManager.astar.LoadAstar(grid.Cells);
+                InputManager.astar.Initialize(grid);
+                InputManager.dfs.Initialize(grid);
             }
 
         }

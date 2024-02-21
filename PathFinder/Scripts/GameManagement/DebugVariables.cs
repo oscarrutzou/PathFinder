@@ -20,7 +20,7 @@ namespace PathFinder
 
             if (gameWorld.currentScene is TestScene1 scene)
             {
-                DrawString($"Mouse over grid pos: {scene.grid.GetTile(InputManager.mousePositionInWorld)?.gridPosition}");
+                DrawString($"Mouse over grid pos: {scene.grid.GetCell(InputManager.mousePositionInWorld)?.gridPosition}");
                 DrawString("");
                 if (InputManager.start != null)
                 {

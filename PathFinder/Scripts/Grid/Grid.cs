@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SharpDX.Direct2D1.Effects;
+using SharpDX.Direct3D9;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,6 +54,27 @@ namespace PathFinder
                     SceneData.gameObjectsToAdd.Add(newCell);
                 }
             }
+            
+            foreach(Cell cell in Cells.Values)
+    {
+                Point point = cell.gridPosition;
+                Point[] directions = new Point[]
+                {
+                    new Point(point.X - 1, point.Y), // Left
+                    new Point(point.X + 1, point.Y), // Right
+                    new Point(point.X, point.Y - 1), // Top
+                    new Point(point.X, point.Y + 1)  // Bottom
+                };
+
+                foreach (Point direction in directions)
+                {
+                    if (Cells.ContainsKey(direction) && Cells[direction].isValid)
+                    {
+                        cell.AddEdge(Cells[direction]);
+                    }
+                }
+            }
+
             ShowHideGrid();
         }
 
@@ -86,7 +108,7 @@ namespace PathFinder
             cell.isValid = false;
         }
 
-        public Cell GetTile(Vector2 pos)
+        public Cell GetCell(Vector2 pos)
         {
             if (pos.X < startPostion.X || pos.Y < startPostion.Y)
             {
@@ -105,6 +127,8 @@ namespace PathFinder
         }
 
         public Vector2 PosFromGridPos(Point point) => Cells[point].position;
+
+        public Cell GetCellFromPoint(Point point) => GetCell(PosFromGridPos(point));
 
         public void ShowHideGrid()
         {
