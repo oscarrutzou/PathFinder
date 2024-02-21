@@ -15,9 +15,11 @@ namespace PathFinder
         public Grid grid;
         private Decoration chest;
         private Decoration snake;
+        private Cell cell1, cell2;
         private Decoration key1, key2;
         private bool initAfterObjectsAdded;
 
+        Timeline timeLine = new Timeline();
         public override void Initialize()
         {
             btn = new Button(GameWorld.Instance.uiCam.BottomCenter, TextureNames.StaticButton, "Hallo\nthis is a test", () => { });
@@ -27,7 +29,7 @@ namespace PathFinder
             grid.LoadGrid(Vector2.Zero);
 
             PlaceDecorationsTest();
-
+            timeLine.StartThread(grid);
         }
 
         private void PlaceDecorationsTest()
@@ -36,20 +38,28 @@ namespace PathFinder
             chest.animation.shouldPlay = false;
             SceneData.gameObjectsToAdd.Add(chest);
 
-            grid.ChangeCellToEmpty(new Point(15, 8));
-            snake = new Decoration(AnimNames.Snake, grid.PosFromGridPos(new Point(15, 8)) - new Vector2(0, 10), 4);
-            snake.spriteEffects = SpriteEffects.FlipHorizontally;                
-            snake.animation.shouldPlay = false;
-            //snake.animation.isLooping = false;
-            //snake.animation.frameRate = 6f;
-            SceneData.gameObjectsToAdd.Add(snake);
+           
 
             //Test til punkt 10,1 på grid
-            key1 = new Decoration(TextureNames.Key, grid.PosFromGridPos(new Point(10, 1)), 4);
+            
+        }
+
+        private void KeyPosition()
+        {
+            Random random = new Random();
+            List<Cell> cells = SceneData.cells.Where(x => x.isValid && x.cost >1).ToList();
+            Cell cell1 = cells[random.Next(cells.Count-1)];
+            cells.Remove(cell1);
+            Cell cell2 = cells[random.Next(cells.Count - 1)];
+            cells.Remove(cell2);
+
+            key1 = new Decoration(TextureNames.Key, cell1.position, 4);
             SceneData.gameObjectsToAdd.Add(key1);
 
-            key2 = new Decoration(TextureNames.Key, grid.PosFromGridPos(new Point(17, 3)), 4);
+            key2 = new Decoration(TextureNames.Key, cell2.position, 4);
             SceneData.gameObjectsToAdd.Add(key2);
+
+
         }
 
         public override void DrawOnScreen()
@@ -59,7 +69,7 @@ namespace PathFinder
             if (InputManager.debugStats) DebugVariables.DrawDebug();
 
         }
-
+        bool init;
         public override void Update()
         {
             base.Update();
