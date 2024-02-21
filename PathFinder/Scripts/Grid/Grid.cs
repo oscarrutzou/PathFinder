@@ -29,15 +29,19 @@ namespace PathFinder
         private int mapH = 13;
         private bool isCentered = true;
         private int demension = Cell.demension;
+
+        public Astar astar = new Astar();
+        public DFS dfs = new DFS();
+
         public void LoadGrid(Vector2 startpos)
         {
-
+            
             if (isCentered)
             {
                 startpos = new Vector2(startpos.X - mapW * demension / 2, startpos.Y - mapH * demension / 2);
             }
 
-            map = new Decoration(TextureNames.Map, startpos, 4);
+            map = new Decoration(TextureNames.Map, startpos);
             map.layerDepth = 0f;
             SceneData.gameObjectsToAdd.Add(map);
 
@@ -75,6 +79,8 @@ namespace PathFinder
                 }
             }
 
+            astar.Initialize(this);
+            dfs.Initialize(this);
             ShowHideGrid();
         }
 

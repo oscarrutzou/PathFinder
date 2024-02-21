@@ -31,8 +31,8 @@ namespace PathFinder
             { 0.5f},
             { 1f},
             { 2f},
-            { 5f},
-            { 10f},
+            { 3f},
+            //{ 10f}, //5 og hurtigere får wizard til at bugge.
         };
 
         public static Cell start, goal;
@@ -77,20 +77,20 @@ namespace PathFinder
                 }
             }
 
-            if (keyboardState.IsKeyDown(Keys.O) && !previousKeyboardState.IsKeyDown(Keys.O))
-            {
-                if (start != null && goal != null)
-                {
-                    if (GameWorld.Instance.currentScene is TestScene1 scene)
-                    {
-                        path = astar.FindPath(start.gridPosition, goal.gridPosition);
-                        //path = dfs.FindPath(start.gridPosition, goal.gridPosition);
-                    }
-                }
-            }
+            //if (keyboardState.IsKeyDown(Keys.O) && !previousKeyboardState.IsKeyDown(Keys.O))
+            //{
+            //    if (start != null && goal != null)
+            //    {
+            //        if (GameWorld.Instance.currentScene is TestScene1 scene)
+            //        {
+            //            path = astar.FindPath(start.gridPosition, goal.gridPosition);
+            //            //path = dfs.FindPath(start.gridPosition, goal.gridPosition);
+            //        }
+            //    }
+            //}
 
             //MoveCam();
-            //ChangeGameSpeed();
+            ChangeGameSpeed();
         }
 
         private static void ChangeGameSpeed()
@@ -126,24 +126,24 @@ namespace PathFinder
  
             }
 
-            if (mouseClicked || mouseRightClicked)
-            {
-                if (GameWorld.Instance.currentScene is TestScene1 scene)
-                {
-                    Cell cell = scene.grid.GetCell(GetMousePositionInWorld());
-                    if (cell == null || !cell.isValid) return;
-                    if (cell == start || cell == goal) return; //Shouldnt be able to pick the start or goal for a search.
+            //if (mouseClicked || mouseRightClicked)
+            //{
+            //    if (GameWorld.Instance.currentScene is TestScene1 scene)
+            //    {
+            //        Cell cell = scene.grid.GetCell(GetMousePositionInWorld());
+            //        if (cell == null || !cell.isValid) return;
+            //        if (cell == start || cell == goal) return; //Shouldnt be able to pick the start or goal for a search.
                     
 
-                    if (mouseClicked)
-                    {
-                        start = cell;    
-                    }else if (mouseRightClicked)
-                    {
-                        goal = cell;
-                    }
-                }
-            }
+            //        if (mouseClicked)
+            //        {
+            //            start = cell;    
+            //        }else if (mouseRightClicked)
+            //        {
+            //            goal = cell;
+            //        }
+            //    }
+            //}
             
         }
 

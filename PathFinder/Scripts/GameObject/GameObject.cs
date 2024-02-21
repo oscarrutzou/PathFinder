@@ -13,7 +13,7 @@ namespace PathFinder
         public SpriteEffects spriteEffects = SpriteEffects.None;
         public Texture2D texture;
         public Animation animation;
-        public int scale = 3;
+        public int scale = 4;
         internal float layerDepth = 0;
 
         public bool isRemoved;

@@ -41,7 +41,7 @@ namespace PathFinder
 
         public List<Cell> FindPath(Point start, Point goal)
         {
-            ResetColors();
+            ResetCells();
 
             open = new HashSet<Cell>();
             closed = new HashSet<Cell>();
@@ -126,11 +126,13 @@ namespace PathFinder
             return path;
         }
 
-        public void ResetColors()
+        private void ResetCells()
         {
-            foreach (Cell cell in cells.Values)
+            foreach (Cell cell in grid.Cells.Values)
             {
                 cell.color = cell.baseColor;
+                cell.Discovered = false;
+                cell.Parent = null;
             }
         }
 

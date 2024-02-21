@@ -15,7 +15,7 @@ namespace PathFinder
         public int H;
         public int cost = 1;
         public int F => G + H;
-        public Cell Parent;
+        public Cell Parent { get; set; }
 
         public static int demension = 64;
         public static int scaleSize = 4;
