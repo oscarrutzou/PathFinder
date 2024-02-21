@@ -17,11 +17,13 @@ namespace PathFinder
         public Random random { get; private set; }
 
         public SpriteBatch spriteBatch;
+        private SpriteFont winnerFont;
         public GraphicsDeviceManager gfxManager;
         public GraphicsDevice gfxDevice => GraphicsDevice;
         public float gameSpeed = 1f;
 
         public static GameWorld Instance;
+        private string _winnerText;
         #endregion
 
         public GameWorld()
@@ -56,6 +58,9 @@ namespace PathFinder
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(gfxDevice);
+            winnerFont = Content.Load<SpriteFont>("Fonts/WinFont");
+
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -63,6 +68,13 @@ namespace PathFinder
             this.gameTime = gameTime;
             InputManager.HandleInput();
             currentScene.Update();
+
+            // skal aktiveres når wizard når tårnet til sidst
+            if (true)
+            {
+                WinnerText("Erik Made It Home");
+                
+            }
 
             base.Update(gameTime);
         }
@@ -82,6 +94,11 @@ namespace PathFinder
             spriteBatch.Begin(sortMode: SpriteSortMode.FrontToBack, BlendState.AlphaBlend,
                 SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise,
                 transformMatrix: uiCam.GetMatrix());
+            if (!string.IsNullOrEmpty(_winnerText))
+            {
+                spriteBatch.DrawString(winnerFont, "Erik Made It Home, Goodnigth ZZzzz", uiCam.Center, Color.AntiqueWhite);
+            }
+
 
             currentScene.DrawOnScreen();
             spriteBatch.End();
@@ -113,6 +130,12 @@ namespace PathFinder
             gfxManager.PreferredBackBufferHeight = gfxDevice.DisplayMode.Height;
             gfxManager.IsFullScreen = true;
             gfxManager.ApplyChanges();
+        }
+
+        public void WinnerText(string text)
+        {
+            _winnerText = text;        
+
         }
     }
 }
