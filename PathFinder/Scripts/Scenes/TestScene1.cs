@@ -15,6 +15,7 @@ namespace PathFinder
         public Grid grid;
         private Decoration chest;
         private Decoration snake;
+        private Cell cell1, cell2;
         //btn = new Button(GameWorld.Instance.uiCam.Center, TextureNames.StaticButton, "Hallo\nthis is a test", () => { btn.isRemoved = true; });
         //btn.SetCollisionBox(30, 20);
         //SceneData.gameObjectsToAdd.Add(btn);
@@ -43,11 +44,25 @@ namespace PathFinder
             SceneData.gameObjectsToAdd.Add(snake);
 
             //Test til punkt 10,1 på grid
-            key1 = new Decoration(TextureNames.Key, grid.PosFromGridPos(new Point(10, 1)), 4);
+            
+        }
+
+        private void KeyPosition()
+        {
+            Random random = new Random();
+            List<Cell> cells = SceneData.cells.Where(x => x.isValid && x.cost >1).ToList();
+            Cell cell1 = cells[random.Next(cells.Count-1)];
+            cells.Remove(cell1);
+            Cell cell2 = cells[random.Next(cells.Count - 1)];
+            cells.Remove(cell2);
+
+            key1 = new Decoration(TextureNames.Key, cell1.position, 4);
             SceneData.gameObjectsToAdd.Add(key1);
 
-            key2 = new Decoration(TextureNames.Key, grid.PosFromGridPos(new Point(17, 3)), 4);
+            key2 = new Decoration(TextureNames.Key, cell2.position, 4);
             SceneData.gameObjectsToAdd.Add(key2);
+
+
         }
 
         public override void DrawOnScreen()
@@ -57,11 +72,15 @@ namespace PathFinder
             if (InputManager.debugStats) DebugVariables.DrawDebug();
 
         }
-
+        bool init;
         public override void Update()
         {
             base.Update();
-            
+            if (!init)
+            {
+                KeyPosition();
+                init = true;
+            }
 
         }
     }
