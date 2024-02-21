@@ -20,6 +20,7 @@ namespace PathFinder
         //btn.SetCollisionBox(30, 20);
         //SceneData.gameObjectsToAdd.Add(btn);
         private Decoration key1, key2;
+        Timeline timeLine = new Timeline();
         public override void Initialize()
         {
             btn = new Button(GameWorld.Instance.uiCam.BottomCenter, TextureNames.StaticButton, "Hallo\nthis is a test", () => { });
@@ -29,7 +30,7 @@ namespace PathFinder
             grid.LoadGrid(Vector2.Zero);
 
             PlaceDecorationsTest();
-
+            timeLine.StartThread(grid);
         }
 
         private void PlaceDecorationsTest()
@@ -38,13 +39,7 @@ namespace PathFinder
             chest.animation.shouldPlay = false;
             SceneData.gameObjectsToAdd.Add(chest);
 
-            grid.ChangeCellToEmpty(new Point(15, 8));
-            snake = new Decoration(AnimNames.Snake, grid.PosFromGridPos(new Point(15, 8)) - new Vector2(0, 10), 4);
-            snake.spriteEffects = SpriteEffects.FlipHorizontally;                
-            snake.animation.shouldPlay = false;
-            //snake.animation.isLooping = false;
-            //snake.animation.frameRate = 6f;
-            SceneData.gameObjectsToAdd.Add(snake);
+           
 
             //Test til punkt 10,1 på grid
             
