@@ -16,9 +16,6 @@ namespace PathFinder
         private Decoration chest;
         private Decoration snake;
         private Cell cell1, cell2;
-        //btn = new Button(GameWorld.Instance.uiCam.Center, TextureNames.StaticButton, "Hallo\nthis is a test", () => { btn.isRemoved = true; });
-        //btn.SetCollisionBox(30, 20);
-        //SceneData.gameObjectsToAdd.Add(btn);
         private Decoration key1, key2;
         Timeline timeLine = new Timeline();
         public override void Initialize()
