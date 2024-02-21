@@ -22,6 +22,9 @@ namespace PathFinder
         private Decoration key1, key2;
         public override void Initialize()
         {
+            btn = new Button(GameWorld.Instance.uiCam.BottomCenter, TextureNames.StaticButton, "Hallo\nthis is a test", () => { });
+            btn.SetCollisionBox(30, 20);
+            SceneData.gameObjectsToAdd.Add(btn);
             grid = new Grid();
             grid.LoadGrid(Vector2.Zero);
 
