@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -48,6 +49,11 @@ namespace PathFinder
             //    Wait
             
             //    Restart
+            //MoveWizard(new Point(0, 0));
+        }
+        private void MoveWizard(Point point)
+        {
+            
         }
     }
 }

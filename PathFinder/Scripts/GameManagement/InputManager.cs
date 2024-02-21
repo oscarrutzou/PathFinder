@@ -36,6 +36,8 @@ namespace PathFinder
         };
 
         public static Cell start, goal;
+        public static Astar astar = new Astar();
+        public static List<Cell> path = new List<Cell>();
         #endregion
 
         /// <summary>
@@ -65,7 +67,7 @@ namespace PathFinder
                 GameWorld.Instance.Exit();
             }
 
-            if (keyboardState.IsKeyDown(Keys.Q) && !previousKeyboardState.IsKeyDown(Keys.Q))
+            if (keyboardState.IsKeyDown(Keys.Tab) && !previousKeyboardState.IsKeyDown(Keys.Tab))
             {
                 debugStats = !debugStats;
                 if (GameWorld.Instance.currentScene is TestScene1 scene)
@@ -74,7 +76,16 @@ namespace PathFinder
                 }
             }
 
-
+            if (keyboardState.IsKeyDown(Keys.O) && !previousKeyboardState.IsKeyDown(Keys.O))
+            {
+                if (start != null && goal != null)
+                {
+                    if (GameWorld.Instance.currentScene is TestScene1 scene)
+                    {
+                        path = astar.FindPath(start.gridPosition, goal.gridPosition);
+                    }
+                }
+            }
 
             //MoveCam();
             //ChangeGameSpeed();

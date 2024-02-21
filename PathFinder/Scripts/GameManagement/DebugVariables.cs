@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic.ApplicationServices;
 using Microsoft.Xna.Framework;
+using SharpDX.Direct3D9;
 using System.Linq;
 
 namespace PathFinder
@@ -29,6 +30,15 @@ namespace PathFinder
                 if (InputManager.goal != null)
                 {
                     DrawString($"Goal pos: {InputManager.goal.gridPosition}");
+                }
+            }
+
+            if (InputManager.path != null && InputManager.path.Count > 0)
+            {
+                
+                for (int i = 0; i < InputManager.path.Count; i++)
+                {
+                    DrawString($"    {i+1}. {InputManager.path[i]}");
                 }
             }
         }

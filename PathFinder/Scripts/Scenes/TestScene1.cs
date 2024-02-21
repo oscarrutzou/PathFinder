@@ -16,6 +16,8 @@ namespace PathFinder
         private Decoration chest;
         private Decoration snake;
         private Decoration key1, key2;
+        private bool initAfterObjectsAdded;
+
         public override void Initialize()
         {
             btn = new Button(GameWorld.Instance.uiCam.BottomCenter, TextureNames.StaticButton, "Hallo\nthis is a test", () => { });
@@ -61,7 +63,11 @@ namespace PathFinder
         public override void Update()
         {
             base.Update();
-            
+            if (!initAfterObjectsAdded)
+            {
+                initAfterObjectsAdded = true;
+                InputManager.astar.LoadAstar(grid.Cells);
+            }
 
         }
     }
