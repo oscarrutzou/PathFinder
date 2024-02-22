@@ -27,13 +27,6 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/WinFont.spritefont
 
-#begin MyFont.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:MyFont.spritefont
-
 #begin Persons/snake.png
 /importer:TextureImporter
 /processor:TextureProcessor
