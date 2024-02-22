@@ -42,18 +42,18 @@ namespace PathFinder
             SpawnEmote();
 
             // Start
-            ChangeDialogueText("Erik is drunk again and has accidentally teleported himself away from home. \nHelp him get home safely");
+            ChangeDialogueText("Erik is drunk again and has accidentally teleported himself away from home. \nHelp him get home safely.");
             Thread.Sleep(2000);
             //Skriv her Spawned wizard
 
-            // Potion
+            // alchohol
             MoveToPoint(new Point(2, 6));
             player.onGoalReached = () => { };
             WaitForGoalReached(2, TextureNames.Emote_Happy);
-            ChangeDialogueText("Erik has picked up another Beer, help him find a dumpster for the empty can");
+            ChangeDialogueText("Erik has picked up another Beer, help him find a dumpster for the empty Can.");
             
 
-            // Deposit in checst
+            // Deposit in chest
             MoveToPoint(new Point(16, 8));
             player.onGoalReached = () => { chest.animation.shouldPlay = true; };
             WaitForGoalReached(0);
@@ -65,7 +65,7 @@ namespace PathFinder
             // Back to start
             MoveToPoint(new Point(10,8));
             player.onGoalReached = () => { };
-            ChangeDialogueText("Erik is once again wandering around aimlessly. It looks like he lost his keys");
+            ChangeDialogueText("Erik is once again wandering around aimlessly. It looks like he lost his keys. Classic Erik");
             WaitForGoalReached(2, TextureNames.Emote_Crying);
 
             // Spawn snake
@@ -78,13 +78,13 @@ namespace PathFinder
             MoveToPoint(keyCell1.gridPosition);
             player.onGoalReached = () => { key1.isRemoved = true; };
             WaitForGoalReached(2, TextureNames.Emote_Happy);
-            ChangeDialogueText("Erik has found a key. I bet he managed to lose his spare key too though");
+            ChangeDialogueText("Erik has found a key. I bet he managed to lose his spare key too.");
 
             //Walk to key 2
             MoveToPoint(keyCell2.gridPosition);
             player.onGoalReached = () => { key2.isRemoved = true; };
             WaitForGoalReached(2, TextureNames.Emote_Happy);
-            ChangeDialogueText("It looks like Erik has somehow managed to retrieve his spare key aswell");
+            ChangeDialogueText("It looks like Erik has somehow managed to retrieve his spare Key.");
 
             // Walk to tower
             MoveToPoint(new Point(2, 6));

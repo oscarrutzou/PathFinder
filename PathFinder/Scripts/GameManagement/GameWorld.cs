@@ -23,7 +23,7 @@ namespace PathFinder
 
         public static GameWorld Instance;
 
-        // Fields for DialogueBox
+        
 
         #endregion
 
