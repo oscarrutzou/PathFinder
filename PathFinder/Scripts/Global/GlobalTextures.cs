@@ -13,6 +13,7 @@ namespace PathFinder
     {
         TestDolphin,
         StaticButton,
+        DialogueBox,
         Tile16x16,
         Map,
         Key,
@@ -23,6 +24,7 @@ namespace PathFinder
     {
         public static Dictionary<TextureNames, Texture2D> textures { get; private set; }
         public static SpriteFont defaultFont { get; private set; }
+        public static SpriteFont defaultFontBigger { get; private set; }
 
         public static void LoadContent()
         {
@@ -32,6 +34,7 @@ namespace PathFinder
             {
                 {TextureNames.TestDolphin, content.Load<Texture2D>("Persons\\tile_dolphin") },
                 {TextureNames.StaticButton, content.Load<Texture2D>("UI\\MediumBtn_0") },
+                {TextureNames.DialogueBox, content.Load<Texture2D>("UI\\dialogueBoxTexture") },
                 {TextureNames.Tile16x16, content.Load<Texture2D>("World\\16x16White") },
                 {TextureNames.Map, content.Load<Texture2D>("World\\Pathfinder") },
                 {TextureNames.Key, content.Load<Texture2D>("World\\key") },
@@ -40,6 +43,7 @@ namespace PathFinder
 
             // Load all fonts
             defaultFont = content.Load<SpriteFont>("Fonts\\Font");
+            defaultFontBigger = content.Load<SpriteFont>("Fonts\\FontBigger");
         }
     }
 }

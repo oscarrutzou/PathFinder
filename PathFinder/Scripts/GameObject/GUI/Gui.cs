@@ -14,10 +14,11 @@ namespace PathFinder
         public string text;
         public Action onClick;
         public Color textColor = Color.Black;
-
+        internal SpriteFont font;
         public Gui()
         {
             layerDepth = 0.99f;
+            font = GlobalTextures.defaultFont;
         }
 
         /// <summary>
@@ -37,14 +38,14 @@ namespace PathFinder
             // Measure the size of each line and store it in the array
             for (int i = 0; i < lines.Length; i++)
             {
-                lineSizes[i] = GlobalTextures.defaultFont.MeasureString(lines[i]);
+                lineSizes[i] = font.MeasureString(lines[i]);
             }
 
             // Find the size of the longest line by comparing the width (X value) of each line. Vector2.Zero is the seed in the Aggregate method
             Vector2 maxSize = lineSizes.Aggregate(Vector2.Zero, (max, current) => (current.X > max.X) ? current : max);
 
             // Calculate the total height of the text block
-            float totalHeight = lines.Length * GlobalTextures.defaultFont.LineSpacing;
+            float totalHeight = lines.Length * font.LineSpacing;
 
             // Calculate the position to center the text based on the size of the longest line and total height
             Vector2 textPosition = position - new Vector2(maxSize.X / 2, totalHeight / 2);
@@ -53,10 +54,10 @@ namespace PathFinder
             for (int i = 0; i < lines.Length; i++)
             {
                 // Calculate the position of the line, centering it horizontally and adjusting vertically based on the line number
-                Vector2 linePosition = textPosition + new Vector2((maxSize.X - lineSizes[i].X) / 2, i * GlobalTextures.defaultFont.LineSpacing);
+                Vector2 linePosition = textPosition + new Vector2((maxSize.X - lineSizes[i].X) / 2, i * font.LineSpacing);
 
                 // Draw the line of text
-                GameWorld.Instance.spriteBatch.DrawString(GlobalTextures.defaultFont,
+                GameWorld.Instance.spriteBatch.DrawString(font,
                                                           lines[i],
                                                           linePosition,
                                                           textColor,

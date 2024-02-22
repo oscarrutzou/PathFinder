@@ -22,6 +22,9 @@ namespace PathFinder
         public float gameSpeed = 1f;
 
         public static GameWorld Instance;
+
+        // Fields for DialogueBox
+
         #endregion
 
         public GameWorld()
@@ -63,6 +66,7 @@ namespace PathFinder
             this.gameTime = gameTime;
             InputManager.HandleInput();
             currentScene.Update();
+
 
             base.Update(gameTime);
         }
