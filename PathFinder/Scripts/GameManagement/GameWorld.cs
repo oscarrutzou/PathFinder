@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System;
+using PathFinder.Scripts.GameObject.GUI;
 
 namespace PathFinder
 {
@@ -22,6 +23,15 @@ namespace PathFinder
         public float gameSpeed = 1f;
 
         public static GameWorld Instance;
+
+        // Fields for DialogueBox
+        private Player player;
+        private DialogueBox dialogueBox;
+        private string currentLocation;
+        private bool hasKey1;
+        private bool hasKey2;
+        private bool visitedTower;
+        private bool visitedChest;
         #endregion
 
         public GameWorld()
@@ -63,6 +73,8 @@ namespace PathFinder
             this.gameTime = gameTime;
             InputManager.HandleInput();
             currentScene.Update();
+            DialogueBoxManager.UpdateDialogueBoxMessages(player, dialogueBox, currentLocation, hasKey1, hasKey2, visitedTower, visitedChest);
+
 
             base.Update(gameTime);
         }
