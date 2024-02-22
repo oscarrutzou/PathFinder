@@ -3,52 +3,23 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 
-namespace PathFinder.Scripts.GameObject.GUI
+namespace PathFinder
 {
-    public class DialogueBox
+    public class DialogueBox: Gui
     {
-        private SpriteFont font;
-        private string text;
-        private Vector2 position;
-        private Texture2D dialogueBoxTexture;
-        private bool isVisible = true;
-        private string currentScenario;
-
-        public DialogueBox(SpriteFont font, string text, Vector2 position)
+        public DialogueBox(Vector2 position, TextureNames textureName, string text)
         {
-            this.font = font;
             this.text = text;
             this.position = position;
+            texture = GlobalTextures.textures[textureName];
+            isCentered = true;
+            font = GlobalTextures.defaultFontBigger;
         }
 
-        public bool IsVisible
+        public override void Draw()
         {
-            get { return isVisible; }
-            set { isVisible = value; }
-        }
-
-        public void Update()
-        {
-            KeyboardState keyboardState = Keyboard.GetState();
-            if (keyboardState.IsKeyDown(Keys.Enter))
-            {
-                isVisible = false;
-            }
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            if (isVisible)
-            {
-                spriteBatch.Draw(dialogueBoxTexture, position, Color.White);
-                spriteBatch.DrawString(font, text, GameWorld.Instance.uiCam.BottomCenter, Color.Black);
-            }
-        }
-
-        // Method to update the current scenario
-        public void UpdateScenario(string newScenario)
-        {
-            currentScenario = newScenario;
+            base.Draw();
+            DrawTextCentered();
         }
     }
 }

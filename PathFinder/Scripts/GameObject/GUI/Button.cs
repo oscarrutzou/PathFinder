@@ -33,7 +33,7 @@ namespace PathFinder
         {
             base.Draw();
             DrawTextCentered();
-            DrawDebugCollisionBox(Color.Black);
+            //DrawDebugCollisionBox(Color.Black);
         }
 
     }
