@@ -13,7 +13,7 @@ namespace PathFinder
         public SpriteEffects spriteEffects = SpriteEffects.None;
         public Texture2D texture;
         public Animation animation;
-        public int scale = 3;
+        public int scale = 4;
         internal float layerDepth = 0;
 
         public bool isRemoved;
@@ -26,6 +26,29 @@ namespace PathFinder
         internal int collisionBoxHeight;
         private Vector2 offset;
         #endregion
+
+        public Vector2 positionCentered { 
+            get
+            {
+                int width = 0;
+                int height = 0;
+                // If the collision box width or height is bigger 0, use the width and height of the texture.
+                if (animation != null)
+                {
+                    width = animation.GetDimensionsWidth();
+                    height = animation.GetDimensionsHeight();
+                }
+                else if (texture != null)
+                {
+                    width = texture.Width;
+                    height = texture.Height;
+                }
+                else
+                    throw new InvalidOperationException("GameObject must have a valid texture or animation.");
+
+                return position + (new Vector2(width / 2 * scale, height / 2 * scale));
+            }
+        }
 
         public Rectangle collisionBox
         {

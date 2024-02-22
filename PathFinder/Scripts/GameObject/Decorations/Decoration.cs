@@ -9,35 +9,31 @@ namespace PathFinder
 {
     public class Decoration: GameObject
     {
-        public Decoration(TextureNames textureName, Vector2 pos, int scale)
+        public Decoration(TextureNames textureName, Vector2 pos)
         {
             texture = GlobalTextures.textures[textureName];
             position = pos;
-            this.scale = scale;
             layerDepth = 0.5f;
         }
-        public Decoration(AnimNames animNames, Vector2 pos, int scale)
+        public Decoration(AnimNames animNames, Vector2 pos)
         {
             animation = GlobalAnimations.animations[animNames];
             position = pos;
-            this.scale = scale;
             layerDepth = 0.5f;
         }
 
-        public Decoration(TextureNames textureName, Vector2 pos, int scale, bool isCentered)
+        public Decoration(TextureNames textureName, Vector2 pos, bool isCentered)
         {
             texture = GlobalTextures.textures[textureName];
             position = pos;
-            this.scale = scale;
             this.isCentered = isCentered;
             layerDepth = 0.5f;
 
         }
-        public Decoration(AnimNames animNames, Vector2 pos, int scale, bool isCentered)
+        public Decoration(AnimNames animNames, Vector2 pos, bool isCentered)
         {
             animation = GlobalAnimations.animations[animNames];
             position = pos;
-            this.scale = scale;
             this.isCentered = isCentered;
             layerDepth = 0.5f;
         }

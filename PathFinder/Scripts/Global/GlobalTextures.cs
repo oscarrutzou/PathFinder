@@ -39,7 +39,7 @@ namespace PathFinder
             };
 
             // Load all fonts
-            defaultFont = content.Load<SpriteFont>("Fonts\\Ariel");
+            defaultFont = content.Load<SpriteFont>("Fonts\\Font");
         }
     }
 }

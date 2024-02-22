@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic.ApplicationServices;
 using Microsoft.Xna.Framework;
+using SharpDX.Direct3D9;
 using System.Linq;
 
 namespace PathFinder
@@ -15,20 +16,31 @@ namespace PathFinder
         {
             pos = new Vector2(10, 10);
             GameWorld gameWorld = GameWorld.Instance;
-            //DrawString($"GameSpeed: {GameWorld.Instance.gameSpeed}");
+            DrawString($"GameSpeed: {GameWorld.Instance.gameSpeed}");
 
+            if (!InputManager.debugStats) return;
+
+            DrawString("");
             if (gameWorld.currentScene is TestScene1 scene)
             {
-                DrawString($"Mouse over grid pos: {scene.grid.GetTile(InputManager.mousePositionInWorld)?.gridPosition}");
-                DrawString("");
-                if (InputManager.start != null)
-                {
-                    DrawString($"Start pos: {InputManager.start.gridPosition}");
+                DrawString($"Mouse over grid pos: {scene.grid.GetCell(InputManager.mousePositionInWorld)?.gridPosition}");
 
-                }
-                if (InputManager.goal != null)
+                //DrawString($"{scene.grid.GetCell(InputManager.mousePositionInWorld)?.position}");
+                //DrawString($"{scene.grid.GetCell(InputManager.mousePositionInWorld)?.positionCentered}");
+                DrawString("");
+                if (scene.timeLine.player != null)
                 {
-                    DrawString($"Goal pos: {InputManager.goal.gridPosition}");
+                    DrawString($"Player position in Vector2: {scene.timeLine.player.position}");
+                    DrawString($"Player grid position: {scene.timeLine.player.gridPosition}");
+                }
+            }
+
+            if (InputManager.path != null && InputManager.path.Count > 0)
+            {
+                
+                for (int i = 0; i < InputManager.path.Count; i++)
+                {
+                    DrawString($"    {i+1}. {InputManager.path[i]}");
                 }
             }
         }

@@ -11,57 +11,58 @@ namespace PathFinder
 {
     public class TestScene1 : Scene
     {
-        Button btn;
         public Grid grid;
+
+        public Timeline timeLine = new Timeline();
+        private Button astarBtn, dfsBtn;
+
         private Decoration chest;
-        private Decoration snake;
-        //btn = new Button(GameWorld.Instance.uiCam.Center, TextureNames.StaticButton, "Hallo\nthis is a test", () => { btn.isRemoved = true; });
-        //btn.SetCollisionBox(30, 20);
-        //SceneData.gameObjectsToAdd.Add(btn);
-        private Decoration key1, key2;
+
+        private bool initAfterObjectsAdded;
         public override void Initialize()
         {
             grid = new Grid();
             grid.LoadGrid(Vector2.Zero);
 
-            PlaceDecorationsTest();
-
+            UIAndDecorations();
+            timeLine.StartThread(grid);
         }
 
-        private void PlaceDecorationsTest()
+        private void UIAndDecorations()
         {
-            chest = new Decoration(AnimNames.ChestOpen, grid.PosFromGridPos(new Point(17, 8)), 4);
+            astarBtn = new Button(GameWorld.Instance.uiCam.BottomLeft + new Vector2(75, -100), TextureNames.StaticButton, "Select A*", () => { timeLine.pathFindingWithAstar = true; });
+            astarBtn.SetCollisionBox(60, 30);
+            astarBtn.scale = 2;
+            dfsBtn = new Button(GameWorld.Instance.uiCam.BottomLeft + new Vector2(225, -100), TextureNames.StaticButton, "Select DFS", () => { timeLine.pathFindingWithAstar = false; });
+            dfsBtn.SetCollisionBox(60, 30);
+            dfsBtn.scale = 2;
+            SceneData.gameObjectsToAdd.Add(astarBtn);
+            SceneData.gameObjectsToAdd.Add(dfsBtn);
+
+            chest = new Decoration(AnimNames.ChestOpen, grid.PosFromGridPos(new Point(17, 8)));
             chest.animation.shouldPlay = false;
             SceneData.gameObjectsToAdd.Add(chest);
 
-            grid.ChangeCellToEmpty(new Point(15, 8));
-            snake = new Decoration(AnimNames.Snake, grid.PosFromGridPos(new Point(15, 8)) - new Vector2(0, 10), 4);
-            snake.spriteEffects = SpriteEffects.FlipHorizontally;                
-            snake.animation.shouldPlay = false;
-            //snake.animation.isLooping = false;
-            //snake.animation.frameRate = 6f;
-            SceneData.gameObjectsToAdd.Add(snake);
-
-            //Test til punkt 10,1 på grid
-            key1 = new Decoration(TextureNames.Key, grid.PosFromGridPos(new Point(10, 1)), 4);
-            SceneData.gameObjectsToAdd.Add(key1);
-
-            key2 = new Decoration(TextureNames.Key, grid.PosFromGridPos(new Point(17, 3)), 4);
-            SceneData.gameObjectsToAdd.Add(key2);
+            
         }
+
 
         public override void DrawOnScreen()
         {
             base.DrawOnScreen();
 
-            if (InputManager.debugStats) DebugVariables.DrawDebug();
-
+            DebugVariables.DrawDebug();
         }
 
         public override void Update()
         {
             base.Update();
-            
+            if (!initAfterObjectsAdded)
+            {
+                initAfterObjectsAdded = true;
+                InputManager.astar.Initialize(grid);
+                InputManager.dfs.Initialize(grid);
+            }
 
         }
     }
