@@ -45,14 +45,14 @@ namespace PathFinder
             Thread.Sleep(2000);
             //Skriv her Spawned wizard
 
-            // Potion
+            // alchohol
             MoveToPoint(new Point(2, 6));
             player.onGoalReached = () => { };
             WaitForGoalReached(2);
             ChangeDialogueText("Erik has picked up another Beer, help him find a dumpster for the empty can");
             
 
-            // Deposit in checst
+            // Deposit in chest
             MoveToPoint(new Point(16, 8));
             player.onGoalReached = () => { chest.animation.shouldPlay = true; };
             WaitForGoalReached(0);
