@@ -16,7 +16,6 @@ namespace PathFinder
         public Timeline timeLine = new Timeline();
         private Button astarBtn, dfsBtn;
 
-        private Decoration chest;
 
         private bool initAfterObjectsAdded;
         public override void Initialize()
@@ -39,9 +38,7 @@ namespace PathFinder
             SceneData.gameObjectsToAdd.Add(astarBtn);
             SceneData.gameObjectsToAdd.Add(dfsBtn);
 
-            chest = new Decoration(AnimNames.ChestOpen, grid.PosFromGridPos(new Point(17, 8)));
-            chest.animation.shouldPlay = false;
-            SceneData.gameObjectsToAdd.Add(chest);
+
 
             
         }

@@ -19,6 +19,8 @@ namespace PathFinder
         private Grid grid;
         private Decoration snake;
         private Decoration key1, key2;
+        private Decoration chest;
+
         public Player player;
         public List<Cell> path;
         public bool pathFindingWithAstar = true; //False == DFS
@@ -32,17 +34,23 @@ namespace PathFinder
 
         private void TimeLine()
         {
+            MakeChest();
             SpawnWizard(new Point(10, 8));
             Thread.Sleep(2000);
-            MoveToPoint(new Point(2, 6));
-            player.onGoalReached = () => { };
+
+            //MoveToPoint(new Point(2, 6));
+            //player.onGoalReached = () => { };
+
+            //while (player.onGoalReached != null) //Prevent high CPU usage
+            //    Thread.Sleep(100);
+
+            //Thread.Sleep(2000);
+            MoveToPoint(new Point(16, 8));
+            player.onGoalReached = () => { chest.animation.shouldPlay = true; };
 
             while (player.onGoalReached != null) //Prevent high CPU usage
                 Thread.Sleep(100);
-
             Thread.Sleep(2000);
-            MoveToPoint(new Point(16, 8));
-            player.onGoalReached = () => { };
 
             // wait till player.onGoalReached == null
 
@@ -79,6 +87,13 @@ namespace PathFinder
         private void PickUpKey()
         {
 
+        }
+
+        private void MakeChest()
+        {
+            chest = new Decoration(AnimNames.ChestOpen, grid.PosFromGridPos(new Point(17, 8)));
+            chest.animation.shouldPlay = false;
+            SceneData.gameObjectsToAdd.Add(chest);
         }
 
         private void PickUpPotion()
