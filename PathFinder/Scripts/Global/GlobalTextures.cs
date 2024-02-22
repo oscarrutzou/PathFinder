@@ -17,6 +17,10 @@ namespace PathFinder
         Tile16x16,
         Map,
         Key,
+        Emote_Crying,
+        Emote_Happy,
+        Emote_Suprised,
+
     }
 
     // Dictionary of all textures
@@ -38,6 +42,9 @@ namespace PathFinder
                 {TextureNames.Tile16x16, content.Load<Texture2D>("World\\16x16White") },
                 {TextureNames.Map, content.Load<Texture2D>("World\\Pathfinder") },
                 {TextureNames.Key, content.Load<Texture2D>("World\\key") },
+                {TextureNames.Emote_Crying, content.Load<Texture2D>("World\\emote_crying") },
+                {TextureNames.Emote_Happy, content.Load<Texture2D>("World\\emote_happy") },
+                {TextureNames.Emote_Suprised, content.Load<Texture2D>("World\\emote_suprised") },
 
             };
 

@@ -21,15 +21,15 @@ namespace PathFinder
             • Den åbne liste er tom dvs. at der ikke blev fundet en sti
     3. Stien findes ved at arbejde sig tilbage fra målet gennem parent noder til startknuden er nået
     */
-    public class Astar: IPathFinding
+    public class Astar
     {
         private Dictionary<Point, Cell> cells;
         private Grid grid;
         private int gridDem;
         private HashSet<Cell> open;
         private HashSet<Cell> closed;
-        private Color pathColor = Color.Red;
-        private Color searchedColor = Color.Pink;
+        private Color pathColor = DebugVariables.pathColor;
+        private Color searchedColor = DebugVariables.searchedColor;
 
         public void Initialize(Grid grid)
         {
@@ -72,25 +72,19 @@ namespace PathFinder
                     return RetracePath(cells[start], cells[goal]);
                 }
 
-
                 List<Cell> neighbors = GetNeighbors(curCell.gridPosition);
 
                 foreach (Cell neighbor in neighbors)
                 {
                     if (closed.Contains(neighbor)) continue;
                     int newMovementCostToNeighbor = curCell.G + curCell.cost + GetDistance(curCell.gridPosition, neighbor.gridPosition);
+
                     if (newMovementCostToNeighbor < neighbor.G || !open.Contains(neighbor))
                     {
                         neighbor.G = newMovementCostToNeighbor;
                         //calulate h using manhatten principle
                         neighbor.H = ((Math.Abs(neighbor.gridPosition.X - goal.X) + Math.Abs(goal.Y - neighbor.gridPosition.Y)) * 10);
-                        /*
-                        Can also use the Euclidean distance to get the H
-                        float first = Math.Abs(end.gridPosition.X - next.gridPosition.X);
-                        float second = Math.Abs(end.gridPosition.Y - next.gridPosition.Y);
-                        float priority = newCost + (float)Math.Sqrt(Math.Pow(first, 2) + Math.Pow(second, 2)); // Euclidean distance
-                        */
-
+                        
                         neighbor.Parent = curCell;
 
                         if (!open.Contains(neighbor))
@@ -104,6 +98,12 @@ namespace PathFinder
             return null;
         }
 
+        /*
+        Can also use the Euclidean distance to get the H
+        float first = Math.Abs(end.gridPosition.X - next.gridPosition.X);
+        float second = Math.Abs(end.gridPosition.Y - next.gridPosition.Y);
+        float priority = newCost + (float)Math.Sqrt(Math.Pow(first, 2) + Math.Pow(second, 2)); // Euclidean distance
+        */
 
         private List<Cell> RetracePath(Cell startPoint, Cell endPoint)
         {
@@ -180,9 +180,9 @@ namespace PathFinder
                     // Check the cells directly to each side
                     Point sidePoint1 = new Point(point.X, ny);
                     Point sidePoint2 = new Point(nx, point.Y);
-
+                    // Does grid position exits in the grid
                     if (!cells.ContainsKey(sidePoint1) || !cells.ContainsKey(sidePoint2)) continue;
-
+                    // To make sure the astar cant jump corner
                     if (!cells[sidePoint1].isValid || !cells[sidePoint2].isValid) continue;
                 }
 

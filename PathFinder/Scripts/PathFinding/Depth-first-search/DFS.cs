@@ -3,11 +3,11 @@ using Microsoft.Xna.Framework;
 
 namespace PathFinder
 {
-    public class DFS: IPathFinding
+    public class DFS
     {
         private Grid grid;
-        private Color pathColor = Color.Red;
-        private Color searchedColor = Color.Pink;
+        private Color pathColor = DebugVariables.pathColor;
+        private Color searchedColor = DebugVariables.searchedColor;
 
         public void Initialize(Grid grid)
         {
@@ -16,7 +16,7 @@ namespace PathFinder
 
         public List<Cell> FindPath(Point startPoint, Point goalPoint)
         {
-            ResetCells();
+            ResetCells(); //Set
 
             Cell start = grid.GetCellFromPoint(startPoint);
             Cell goal = grid.GetCellFromPoint(goalPoint);
@@ -25,25 +25,27 @@ namespace PathFinder
 
             while (stack.Count > 0)
             {
-                Cell current = stack.Pop();
-                current.Discovered = true;
+                Cell current = stack.Pop(); //Get the new current cell
+                current.Discovered = true; //Since we have checked it, the variable is true
 
                 if (current == goal)
                 {
-                    return TrackPath(start, current);
+                    //Return a list after going though the cells parents
+                    return TrackPath(start, current); //Color the path red
                 }
 
+                //Edges is limited to only cells that are valid at the start of the class
+                //But if there is any change in a cell, we still need to check if the neighbor isValid
                 foreach (Cell neighbor in current.Edges)
                 {
                     if (!neighbor.Discovered && neighbor.isValid)
                     {
                         stack.Push(neighbor);
                         neighbor.Parent = current;
-                        neighbor.color = searchedColor;
+                        neighbor.color = searchedColor; //To show path
                     }
                 }
             }
-
             return null; //Cant find path
         }
         private void ResetCells()

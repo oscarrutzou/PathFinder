@@ -37,7 +37,7 @@ namespace PathFinder
             //How to use. Each animation should be called _0, then _1 and so on, on each texuture.
             //Remember the path should show everything and just delete the number. But keep the "_".
             //LoadIndividualFramesAnimationT(AnimNames.FighterDead, "Persons\\Worker\\FigtherTestDead_", 2);
-            LoadIndividualFramesAnimationT(AnimNames.ButtonPress, "UI\\MediumBtn_", 4);
+            LoadIndividualFramesAnimation(AnimNames.ButtonPress, "UI\\MediumBtn_", 4);
         }
 
         private static void LoadSpriteSheet(AnimNames animName, string path, int dem)
@@ -50,7 +50,7 @@ namespace PathFinder
             animations.Add(animName, spriteSheet);
         }
 
-        private static void LoadIndividualFramesAnimationT(AnimNames animationName, string path, int framesInAnim)
+        private static void LoadIndividualFramesAnimation(AnimNames animationName, string path, int framesInAnim)
         {
             // Load all frames in the animation
             List<Texture2D> animList = new List<Texture2D>();

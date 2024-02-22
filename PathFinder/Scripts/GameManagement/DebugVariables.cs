@@ -9,18 +9,22 @@ namespace PathFinder
     {
         private static Vector2 pos;
 
-        public static Color selectedGridColor = Color.Green;
-        public static Color debugNonWalkableTilesColor = Color.DeepPink;
+        public static Color pathColor = Color.Green;
+        public static Color searchedColor = Color.Red;
 
         public static void DrawDebug()
         {
             pos = new Vector2(10, 10);
             GameWorld gameWorld = GameWorld.Instance;
-            DrawString($"GameSpeed: {GameWorld.Instance.gameSpeed}");
-
+            DrawString($"Game speed: {GameWorld.Instance.gameSpeed}");
+            if (gameWorld.currentScene is TestScene1 scene1)
+            { 
+                DrawString("Selected pathFinding algorithm: " + (scene1.timeLine.pathFindingWithAstar == true ? "Astar": "DFS"));
+            }
             if (!InputManager.debugStats) return;
 
             DrawString("");
+
             if (gameWorld.currentScene is TestScene1 scene)
             {
                 DrawString($"Mouse over grid pos: {scene.grid.GetCell(InputManager.mousePositionInWorld)?.gridPosition}");
@@ -37,7 +41,6 @@ namespace PathFinder
 
             if (InputManager.path != null && InputManager.path.Count > 0)
             {
-                
                 for (int i = 0; i < InputManager.path.Count; i++)
                 {
                     DrawString($"    {i+1}. {InputManager.path[i]}");

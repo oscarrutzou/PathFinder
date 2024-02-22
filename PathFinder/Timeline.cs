@@ -17,17 +17,15 @@ namespace PathFinder
 
         private Thread timeLine;
         private Grid grid;
-        private Decoration snake;
-        private Decoration key1, key2;
+        private Decoration key1, key2, chest, snake, emote;
         private Cell keyCell1, keyCell2;
-        private Decoration chest;
 
         private DialogueBox dialogueBox;
 
         public Player player;
         public List<Cell> path;
         public bool pathFindingWithAstar = true; //False == DFS
-
+        private Vector2 emoteOffset = new Vector2(0, -40);
         public void StartThread(Grid grid)
         {
             this.grid = grid;
@@ -37,10 +35,13 @@ namespace PathFinder
 
         private void TimeLine()
         {
+            SpawnWizard(new Point(10, 8));
+            
             SpawnDialogueBox();
             SpawnChest();
+            SpawnEmote();
 
-            SpawnWizard(new Point(10, 8));
+            // Start
             ChangeDialogueText("Erik is drunk again and has accidentally teleported himself away from home. \nHelp him get home safely");
             Thread.Sleep(2000);
             //Skriv her Spawned wizard
@@ -48,7 +49,7 @@ namespace PathFinder
             // Potion
             MoveToPoint(new Point(2, 6));
             player.onGoalReached = () => { };
-            WaitForGoalReached(2);
+            WaitForGoalReached(2, TextureNames.Emote_Happy);
             ChangeDialogueText("Erik has picked up another Beer, help him find a dumpster for the empty can");
             
 
@@ -57,13 +58,15 @@ namespace PathFinder
             player.onGoalReached = () => { chest.animation.shouldPlay = true; };
             WaitForGoalReached(0);
             ChangeDialogueText("Uhm, I guess that works too");
-            Thread.Sleep(2000);
+            ChangeEmote(TextureNames.Emote_Suprised);
+            Thread.Sleep(3000);
+            emote.isVisible = false;
 
             // Back to start
             MoveToPoint(new Point(10,8));
             player.onGoalReached = () => { };
             ChangeDialogueText("Erik is once again wandering around aimlessly. It looks like he lost his keys");
-            WaitForGoalReached(2);
+            WaitForGoalReached(2, TextureNames.Emote_Crying);
 
             // Spawn snake
             SpawnSnake();
@@ -74,13 +77,13 @@ namespace PathFinder
             //Walk to key 1
             MoveToPoint(keyCell1.gridPosition);
             player.onGoalReached = () => { key1.isRemoved = true; };
-            WaitForGoalReached(2);
+            WaitForGoalReached(2, TextureNames.Emote_Happy);
             ChangeDialogueText("Erik has found a key. I bet he managed to lose his spare key too though");
 
             //Walk to key 2
             MoveToPoint(keyCell2.gridPosition);
             player.onGoalReached = () => { key2.isRemoved = true; };
-            WaitForGoalReached(2);
+            WaitForGoalReached(2, TextureNames.Emote_Happy);
             ChangeDialogueText("It looks like Erik has somehow managed to retrieve his spare key aswell");
 
             // Walk to tower
@@ -97,6 +100,15 @@ namespace PathFinder
             while (player.onGoalReached != null) //Prevent high CPU usage
                 Thread.Sleep(100);
             Thread.Sleep(timeSec * 1000);
+            emote.isVisible = false;
+        }
+        private void WaitForGoalReached(int timeSec, TextureNames emoteTexture)
+        {
+            while (player.onGoalReached != null) //Prevent high CPU usage
+                Thread.Sleep(100);
+            ChangeEmote(emoteTexture);
+            Thread.Sleep(timeSec * 1000);
+            emote.isVisible = false;
         }
 
         private void SpawnWizard(Point point)
@@ -104,17 +116,30 @@ namespace PathFinder
             player = new Player(grid, point);
             SceneData.gameObjectsToAdd.Add(player);
         }
+
+        private void SpawnEmote()
+        {
+            emote = new Decoration(TextureNames.Emote_Happy, player.position + emoteOffset);
+            emote.bounce = true;
+            emote.layerDepth = 0.8f; //Should be higher than the player layerDepth.
+            emote.isVisible = false;
+            SceneData.gameObjectsToAdd.Add(emote);
+        }
+
+        private void ChangeEmote(TextureNames textureName)
+        {
+            emote.isVisible = true;
+            emote.texture = GlobalTextures.textures[textureName];
+            emote.ChangePos(player.position + emoteOffset);
+        }
+
         private void SpawnDialogueBox()
         {
             dialogueBox = new DialogueBox(GameWorld.Instance.uiCam.BottomCenter + new Vector2(0, -100), TextureNames.DialogueBox, "");
             dialogueBox.scale = 1;
             SceneData.gameObjectsToAdd.Add(dialogueBox);
         }
-        private void ChangeDialogueText(string text)
-        {
-            dialogueBox.text = text;
-
-        }
+        private void ChangeDialogueText(string text) => dialogueBox.text = text;
 
         private void MoveToPoint(Point point)
         {

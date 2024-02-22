@@ -41,6 +41,7 @@ namespace PathFinder
             gridPosition = gridPos;
             position = grid.GetCellFromPoint(gridPos).positionCentered + new Vector2(0, -Cell.demension / 2);
             isCentered = true;
+            layerDepth = 0.6f;
 
             RightStoppedAnimation();
         }
